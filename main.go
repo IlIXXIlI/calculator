@@ -50,8 +50,8 @@ func main() {
 		}
 
 		if len(lst) == 3 {
-			ind0 := slices.IndexFunc(keys, func(elt string) bool { return elt == lst[0] })
-			ind1 := slices.IndexFunc(keys, func(elt string) bool { return elt == lst[2] })
+			ind0 := slices.IndexFunc(keys, func(elt string) bool { return elt == strings.Split(lst[0], "")[0] })
+			ind1 := slices.IndexFunc(keys, func(elt string) bool { return elt == strings.Split(lst[2], "")[0] })
 
 			if ind0 == -1 && ind1 == -1 {
 				a, err := strconv.Atoi(lst[0])
@@ -69,7 +69,13 @@ func main() {
 				a := roman_numerals[lst[0]]
 				symbol := lst[1]
 				b := roman_numerals[lst[2]]
-
+				if a == 0 || b == 0 {
+					if a == 0 {
+						panic("Выдача паники, потому что неправильное значение: " + lst[0])
+					} else {
+						panic("Выдача паники, потому что неправильное значение: " + lst[2])
+					}
+				}
 				answer := calculator(a, b, symbol)
 				if answer <= 0 {
 					panic("Выдача паники, так как в римской системе нет нуля и отрицательных чисел")
@@ -110,7 +116,7 @@ func calculator(a int, b int, symbol string) int {
 			}
 			return result
 		} else {
-			panic("Выдача паники, так как не подходящие число")
+			panic("Выдача паники, так как не подходящие числа")
 		}
 	} else {
 		panic("Неизвестная математичаская операция")
