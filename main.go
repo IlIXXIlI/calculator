@@ -61,7 +61,7 @@ func main() {
 				if err != nil {
 					panic("Выдача паники, так как не подходящие число")
 				}
-
+				o
 				result := calculator(a, b, symbol)
 				fmt.Println(result)
 
